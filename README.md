@@ -7,3 +7,8 @@ Docker build of Varnish HTTP accelerator
 -   Libvmod Dynamic
 
 Inspired in this blog post: https://knplabs.com/en/blog/how2tip-varnish-dynamic-backend-dns-resolution-in-a-docker-swarm-context
+
+## Environemnt variables
+
+-   `VARNISH_MEMORY=80M`
+-   `VARNISH_PARAMS=""`

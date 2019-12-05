@@ -21,8 +21,8 @@ RUN set -eux; \
     rm -rf /tmp/libvmod-dynamic* && \
     apk del --purge .vmod-build-deps autoconf automake make libexecinfo-dev pcre-dev
 
-WORKDIR /app
 ENV VARNISH_MEMORY 80M
+ENV VARNISH_PARAMS  ""
 
 # Run varnish and also print logs on stdout
-CMD ["/bin/sh", "-o", "pipefail", "-c", "varnishd -F -f /usr/local/share/varnish/vcl/default.vcl -s malloc,${VARNISH_MEMORY} | varnishncsa -F '%h %l %u %t \"%r\" %s %b \"%{Referer}i\" \"%{User-agent}i\" \"%{Varnish:handling}x\"'"]
+CMD ["/bin/sh", "-o", "pipefail", "-c", "varnishd -F -f /usr/local/share/varnish/vcl/default.vcl -s malloc,${VARNISH_MEMORY} ${VARNISH_PARAMS} | varnishncsa -F '%h %l %u %t \"%r\" %s %b \"%{Referer}i\" \"%{User-agent}i\" \"%{Varnish:handling}x\"'"]
